@@ -41,8 +41,6 @@ endif
 CPPFLAGS+= -g
 CXX=g++
 
-include $(SNAP_ROOT)/snap_env.sh
-
 all: all_build
 
 #config:
