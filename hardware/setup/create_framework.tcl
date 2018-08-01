@@ -265,6 +265,8 @@ if { $nvme_used == TRUE } {
     set_property used_in_simulation false [get_files  $ip_dir/nvme/nvme.srcs/sources_1/bd/nvme_top/nvme_top.bd]
     add_files -fileset sim_1 -norecurse $sim_dir/nvme_lite
     add_files -fileset sim_1 -norecurse $hdl_dir/nvme/nvme_defines.sv
+    set_property file_type {Verilog Header} [get_files $sim_dir/nvme_lite/snap_config.sv]
+    set_property file_type {Verilog Header} [get_files $hdl_dir/nvme/nvme_defines.sv]
   }
 } else {
   remove_files $action_dir/action_axi_nvme.vhd -quiet
@@ -292,9 +294,6 @@ puts "                        importing XDCs"
 if { $capi_ver == "capi20" } {
   puts "                        importing specific Board support XDCs"
   add_files -fileset constrs_1 -norecurse $root_dir/setup/$fpga_card/snap_$fpga_card.xdc >> $log_file
-  foreach xdc_file [glob -nocomplain -dir $root_dir/capi2-bsp/$fpga_card/xdc * ] {
-    add_files -fileset constrs_1 -norecurse $xdc_file >> $log_file
-  }
 }
 
 # DDR XDCs
