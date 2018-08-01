@@ -20,8 +20,9 @@
 
 create_clock -name sys_clk -period 10 [get_ports pcie_clkp]
 
-set_property LOC [get_package_pins -of_objects [get_bels [get_sites -filter {NAME =~ *COMMON*} -of_objects [get_iobanks -of_objects [get_sites GTYE4_COMMON_X1Y6]]]/REFCLK1P]] [get_ports pcie_clkp]
-set_property LOC [get_package_pins -of_objects [get_bels [get_sites -filter {NAME =~ *COMMON*} -of_objects [get_iobanks -of_objects [get_sites GTYE4_COMMON_X1Y6]]]/REFCLK1N]] [get_ports pcie_clkn]
+# Below constraints will force refclk pin to AP11. Must delete them.
+#set_property LOC [get_package_pins -of_objects [get_bels [get_sites -filter {NAME =~ *COMMON*} -of_objects [get_iobanks -of_objects [get_sites GTYE4_COMMON_X1Y6]]]/REFCLK1P]] [get_ports pcie_clkp]
+#set_property LOC [get_package_pins -of_objects [get_bels [get_sites -filter {NAME =~ *COMMON*} -of_objects [get_iobanks -of_objects [get_sites GTYE4_COMMON_X1Y6]]]/REFCLK1N]] [get_ports pcie_clkn]
 
 set_false_path -from [get_ports pcie_rst_n]
 
